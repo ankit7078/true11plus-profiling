@@ -8,7 +8,7 @@ import { BiCheckCircle, BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { Button } from "@/ui/button/Button";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { UserProps } from "@/types/UserProps";
-import { getErrorResponse } from "@/contexts/Callbacks";
+import { getErrorResponse, shuffleArray } from "@/contexts/Callbacks";
 import { trueTestimonials } from "@/common/TestimonialsData";
 import { useCallback, useEffect, useState } from "react";
 import { API } from "@/contexts/API";
@@ -50,7 +50,7 @@ export default function StudentSuccessSection() {
 
           <div className="hidden md:flex gap-3 mb-2">
             <button
-              className="swiper-button-prev-custom group cursor-pointer w-12 h-12 rounded-full border border-(--border) flex items-center justify-center hover:bg-(--main) hover:border-(--main) transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="swiper-button-prev-custom-student group cursor-pointer w-12 h-12 rounded-full border border-(--border) flex items-center justify-center hover:bg-(--main) hover:border-(--main) transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
               aria-label="Previous slide"
             >
               <BiChevronLeft
@@ -60,7 +60,7 @@ export default function StudentSuccessSection() {
             </button>
 
             <button
-              className="swiper-button-next-custom group cursor-pointer w-12 h-12 rounded-full border border-(--border) flex items-center justify-center hover:bg-(--main) hover:border-(--main) transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="swiper-button-next-custom-student group cursor-pointer w-12 h-12 rounded-full border border-(--border) flex items-center justify-center hover:bg-(--main) hover:border-(--main) transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
               aria-label="Next slide"
             >
               <BiChevronRight
@@ -79,8 +79,8 @@ export default function StudentSuccessSection() {
             loop={true}
             autoplay={{ delay: 5000, disableOnInteraction: false }}
             navigation={{
-              nextEl: ".swiper-button-next-custom",
-              prevEl: ".swiper-button-prev-custom",
+              nextEl: ".swiper-button-next-custom-student",
+              prevEl: ".swiper-button-prev-custom-student",
             }}
             breakpoints={{
               640: { slidesPerView: 1.5 },
@@ -105,19 +105,21 @@ export default function StudentSuccessSection() {
         >
           <div className="lg:flex items-center gap-6 relative z-10">
             <div className="flex -space-x-3 mb-3 sm:mb-0">
-              {trueTestimonials?.map((ite, i) => (
-                <div
-                  key={i}
-                  className="w-12 h-12 rounded-full relative border-2 border-(--border) bg-(--main-emphasis) overflow-hidden shadow-custom"
-                >
-                  <Image
-                    src={ite?.img}
-                    alt="user"
-                    fill
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
+              {shuffleArray(trueTestimonials)
+                ?.slice(0, 5)
+                ?.map((ite, i) => (
+                  <div
+                    key={i}
+                    className="w-12 h-12 rounded-full relative border-2 border-(--border) bg-(--main-emphasis) overflow-hidden shadow-custom"
+                  >
+                    <Image
+                      src={ite?.img}
+                      alt="user"
+                      fill
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ))}
             </div>
             <div>
               <p className="text-xl font-bold tracking-tight">

@@ -7,6 +7,7 @@ import { LuSparkles } from "react-icons/lu";
 import { trueFaqs } from "@/common/FaqData";
 import { trueTestimonials } from "@/common/TestimonialsData";
 import Image from "next/image";
+import { shuffleArray } from "@/contexts/Callbacks";
 
 export default function FAQSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -40,20 +41,22 @@ export default function FAQSection() {
 
             <div className="mt-12 flex items-center gap-6">
               <div className="flex -space-x-3">
-                {trueTestimonials?.map((student, idx) => (
-                  <div
-                    key={idx}
-                    className="relative w-12 h-12 rounded-full border-4 border-(--border) bg-(--secondary-bg) shadow-custom overflow-hidden"
-                    style={{ zIndex: 5 - idx }}
-                  >
-                    <Image
-                      fill
-                      src={student?.img}
-                      alt={student.name || "Student"}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                ))}
+                {shuffleArray(trueTestimonials)
+                  ?.slice(0, 5)
+                  ?.map((student, idx) => (
+                    <div
+                      key={idx}
+                      className="relative w-12 h-12 rounded-full border-4 border-(--border) bg-(--secondary-bg) shadow-custom overflow-hidden"
+                      style={{ zIndex: 5 - idx }}
+                    >
+                      <Image
+                        fill
+                        src={student?.img}
+                        alt={student.name || "Student"}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ))}
               </div>
               <p className="text-sm font-medium text-(--text-color)">
                 <span className="text-(--text-color-emphasis) font-bold">

@@ -38,7 +38,7 @@ const educationSections = [
     desc: "Finalize your journey with expert review of every task assigned by your mentor. We ensure your final submission is polished, authentic, and impossible for big universities to ignore.",
     bg: "bg-(--tertiary-bg)",
     icon: <FaMapLocationDot size={32} />,
-    image: "/img/background/selection-image.webp",
+    image: "/img/background/selection-image.jpeg",
     tag: "Ivy League Ready",
     label: "Step 03 — Final Call",
     reverse: false,
@@ -117,7 +117,7 @@ export default function StickyCarouselSection() {
                 section?.reverse ? "lg:order-1" : "lg:order-2"
               }`}
             >
-              <div className="relative w-full max-w-md lg:max-w-xl aspect-square rounded-3xl overflow-hidden border-4 border-(--border) shadow-2xl">
+              <div className="relative w-full max-w-md lg:max-w-xl aspect-square rounded-custom overflow-hidden border-4 border-(--border) shadow-custom">
                 <Image
                   src={section?.image}
                   alt={section?.title}

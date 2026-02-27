@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
-import { LuBadgeX, LuEye } from "react-icons/lu";
+import { LuBadgeX, LuEye, LuPencil } from "react-icons/lu";
 import { BiBadgeCheck } from "react-icons/bi";
 import type { Column, DashboardOutletContextProps } from "../../types/Types";
 import type { UserProps } from "../../types/UserProps";
@@ -137,6 +137,14 @@ export default function StudentList() {
                     href={`/dashboard/student/${row._id}`}
                   />
                 )}
+                {matchPermissions(authUser?.permissions, "Update user") && (
+                  <TableButton
+                    Icon={LuPencil}
+                    color="green"
+                    buttontype="link"
+                    href={`/dashboard/user/${row._id}/edit`}
+                  />
+                )}
               </>
             )}
           </div>
@@ -197,7 +205,7 @@ export default function StudentList() {
     ];
   }, [users, columns]);
 
-  if (loading) return <UserListSkeleton/>
+  if (loading) return <UserListSkeleton />;
 
   return (
     <div className="space-y-6">

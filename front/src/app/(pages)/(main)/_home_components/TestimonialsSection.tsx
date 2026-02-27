@@ -87,7 +87,12 @@ export default function TestimonialSection() {
                       <BiCheckCircle size={14} className="text-(--main)" />
                     </h5>
                     <p className="text-(--main) text-xs font-bold uppercase tracking-wider">
-                      {item?.school}
+                      {item?.school}{" "}
+                      {item?.badge && (
+                        <span className="text-(--success)">
+                          ({item?.badge})
+                        </span>
+                      )}
                     </p>
                   </div>
                 </div>
